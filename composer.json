@@ -1,0 +1,19 @@
+{
+  "name": "arslav/oxxy-fuck",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "Arslav\\OxxyFuck\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Arslav",
+      "email": "ardesslava@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.0.0",
+    "ext-mbstring": "*"
+  }
+}

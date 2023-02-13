@@ -1,0 +1,13 @@
+#!/usr/bin/env php
+<?php
+
+use Arslav\OxxyFuck\VirtualMachine;
+
+require_once __DIR__.'/vendor/autoload.php';
+
+$code = file_get_contents($argv[1]);
+
+$vm = new VirtualMachine();
+
+$vm->load($code);
+$vm->run();
