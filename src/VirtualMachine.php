@@ -7,6 +7,8 @@ namespace Arslav\OxxyFuck;
 use Arslav\OxxyFuck\Components\Stack;
 use Arslav\OxxyFuck\Components\Memory;
 use Arslav\OxxyFuck\Components\OutputBuffer;
+use Arslav\OxxyFuck\Exceptions\RuntimeException;
+use Arslav\OxxyFuck\Exceptions\OutOfRangeException;
 
 /**
  * Class VirtualMachine
@@ -24,12 +26,9 @@ class VirtualMachine
     protected array $commands = [];
     protected int $position = 0;
 
-    /**
-     * @param int $size
-     */
-    public function __construct(int $size = 3000)
+    public function __construct()
     {
-        $this->memory = new Memory($size);
+        $this->memory = new Memory();
         $this->stack = new Stack();
         $this->outputBuffer = new OutputBuffer();
         $this->translator = new Translator($this);
@@ -70,13 +69,28 @@ class VirtualMachine
 
     /**
      * @return void
+     *
+     * @throws RuntimeException
      */
     public function run(): void
     {
-        while ($this->position < $this->getCommandsCount()) {
-            $operator = $this->commands[$this->position];
-            $this->translator->getCommand($operator)?->execute();
-            $this->position++;
+        try {
+            throw new OutOfRangeException();
+            while ($this->position < $this->getCommandsCount()) {
+                $operator = $this->getCurrentOperator();
+                $this->translator->getCommand($operator)?->execute();
+                $this->position++;
+            }
+        } catch (RuntimeException $exception) {
+            throw new RuntimeException(
+                sprintf(
+                    'Position: %s, operator "%s"',
+                    $this->position,
+                    $this->getCurrentOperator()
+                ),
+                0,
+                $exception
+            );
         }
         $this->outputBuffer->print();
         $this->reset();
@@ -91,5 +105,13 @@ class VirtualMachine
         $this->memory->clear();
         $this->outputBuffer->flush();
         $this->stack->clear();
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function getCurrentOperator(): mixed
+    {
+        return $this->commands[$this->position];
     }
 }

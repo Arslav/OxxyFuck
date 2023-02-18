@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Arslav\OxxyFuck\Components;
 
+use Arslav\OxxyFuck\Env;
+use Arslav\OxxyFuck\Exceptions\OutOfRangeException;
+
 /**
  * Class Memory
  *
@@ -15,12 +18,9 @@ class Memory
     protected int $size;
     protected int $address = 0;
 
-    /**
-     * @param int $size
-     */
-    public function __construct(int $size)
+    public function __construct()
     {
-        $this->size = $size;
+        $this->size = (int) Env::memorySize() ?: 3000;
         $this->clear();
     }
 
@@ -53,17 +53,29 @@ class Memory
 
     /**
      * @return void
+     *
+     * @throws OutOfRangeException
      */
     public function incrementAddress(): void
     {
         $this->address++;
+
+        if ($this->address > $this->size) {
+            throw new OutOfRangeException();
+        }
     }
 
     /**
      * @return void
+     *
+     * @throws OutOfRangeException
      */
     public function decrementAddress(): void
     {
         $this->address--;
+
+        if ($this->address < 0) {
+            throw new OutOfRangeException();
+        }
     }
 }
