@@ -75,11 +75,11 @@ class VirtualMachine
     public function run(): void
     {
         try {
-            throw new OutOfRangeException();
             while ($this->position < $this->getCommandsCount()) {
                 $operator = $this->getCurrentOperator();
                 $this->translator->getCommand($operator)?->execute();
                 $this->position++;
+
             }
         } catch (RuntimeException $exception) {
             throw new RuntimeException(
@@ -108,10 +108,15 @@ class VirtualMachine
     }
 
     /**
-     * @return mixed
+     * @return string
+     * @throws OutOfRangeException
      */
-    protected function getCurrentOperator(): mixed
+    protected function getCurrentOperator(): string
     {
+        if (!isset($this->commands[$this->position])) {
+            throw new OutOfRangeException();
+        }
+
         return $this->commands[$this->position];
     }
 }
