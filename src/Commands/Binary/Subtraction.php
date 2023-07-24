@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Arslav\OxxyFuck\Commands\Binary;
 
+use Arslav\OxxyFuck\Exceptions\OutOfRangeException;
+
 /**
  * Class Subtraction
  *
@@ -13,6 +15,7 @@ class Subtraction extends AbstractBinaryOperation
 {
     /**
      * @return void
+     * @throws OutOfRangeException
      */
     public function execute(): void
     {

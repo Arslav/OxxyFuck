@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Arslav\OxxyFuck\Commands\Conditional;
 
 use Arslav\OxxyFuck\Commands\AbstractCommand;
+use Arslav\OxxyFuck\Exceptions\EmptyStackException;
 
 /**
  * Class Jump
@@ -15,6 +16,7 @@ class Jump extends AbstractCommand
 {
     /**
      * @return void
+     * @throws EmptyStackException
      */
     public function execute(): void
     {

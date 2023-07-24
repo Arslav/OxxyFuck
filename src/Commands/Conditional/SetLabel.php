@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Arslav\OxxyFuck\Commands\Conditional;
 
 use Arslav\OxxyFuck\Commands\AbstractCommand;
+use Arslav\OxxyFuck\Exceptions\StackOverflowException;
 
 /**
  * Class SetLabel
@@ -15,6 +16,7 @@ class SetLabel extends AbstractCommand
 {
     /**
      * @return void
+     * @throws StackOverflowException
      */
     public function execute(): void
     {

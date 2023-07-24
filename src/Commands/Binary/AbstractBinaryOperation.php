@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Arslav\OxxyFuck\Commands\Binary;
 
 use Arslav\OxxyFuck\Commands\AbstractCommand;
+use Arslav\OxxyFuck\Exceptions\OutOfRangeException;
 
 /**
  * Class AbstractBinaryOperation
@@ -15,6 +16,7 @@ abstract class AbstractBinaryOperation extends AbstractCommand
 {
     /**
      * @return array
+     * @throws OutOfRangeException
      */
     protected function getOperands(): array
     {

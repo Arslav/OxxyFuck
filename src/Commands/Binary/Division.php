@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Arslav\OxxyFuck\Commands\Binary;
 
+use Arslav\OxxyFuck\Exceptions\OutOfRangeException;
+use Arslav\OxxyFuck\Exceptions\DividingByZeroException;
+
 /**
  * Class Division
  *
@@ -13,12 +16,16 @@ class Division extends AbstractBinaryOperation
 {
     /**
      * @return void
+     * @throws OutOfRangeException
+     * @throws DividingByZeroException
      */
     public function execute(): void
     {
         [$first, $second] = $this->getOperands();
 
-        //TODO: Ошибка в случае деления на 0
+        if ($second == 0) {
+            throw new DividingByZeroException();
+        }
         $this->vm->memory->setCurrentCell($first / $second);
     }
 }

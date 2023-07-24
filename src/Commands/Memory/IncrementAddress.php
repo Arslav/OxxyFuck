@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Arslav\OxxyFuck\Commands\Memory;
 
 use Arslav\OxxyFuck\Commands\AbstractCommand;
+use Arslav\OxxyFuck\Exceptions\OutOfRangeException;
 
 /**
  * Class IncrementAddress
@@ -15,6 +16,7 @@ class IncrementAddress extends AbstractCommand
 {
     /**
      * @return void
+     * @throws OutOfRangeException
      */
     public function execute(): void
     {
