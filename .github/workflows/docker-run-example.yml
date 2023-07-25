@@ -22,5 +22,5 @@ jobs:
         run: |
           echo "Sample:"
           cat examples/hello-pizda.oxxy
-          echo "Result:"
+          echo "\nResult:"
           oxxy-fuck examples/hello-pizda.oxxy
