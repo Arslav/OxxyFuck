@@ -1,0 +1,26 @@
+name: Build and Run Example
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the image
+      run: docker build . --file Dockerfile --tag oxxyfuck:latest
+    - uses: addnab/docker-run-action@v3
+      with:
+        image: oxxyfuck:latest
+        run: |
+          echo "Sample:"
+          cat examples/hello-pizda.oxxy
+          echo "Result:"
+          oxxy-fuck examples/hello-pizda.oxxy
