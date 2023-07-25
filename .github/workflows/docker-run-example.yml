@@ -22,5 +22,7 @@ jobs:
         run: |
           echo "Sample:"
           cat examples/hello-pizda.oxxy
-          echo $'\n\nResult:'
+          echo ""
+          echo ""
+          echo "Result:"
           php oxxy-fuck examples/hello-pizda.oxxy
