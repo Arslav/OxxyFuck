@@ -23,4 +23,4 @@ jobs:
           echo "Sample:"
           cat examples/hello-pizda.oxxy
           echo "\nResult:"
-          oxxy-fuck examples/hello-pizda.oxxy
+          php oxxy-fuck examples/hello-pizda.oxxy
