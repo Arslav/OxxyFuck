@@ -1,3 +1,4 @@
+[![Build and Run Example](https://github.com/Arslav/OxxyFuck/actions/workflows/docker-run-example.yml/badge.svg)](https://github.com/Arslav/OxxyFuck/actions/workflows/docker-run-example.yml)
 # Язык программирования OxxyFuck
 
 ------------------------
